@@ -1,45 +1,31 @@
 # Sonar Reporter 
-this Python tool performs an API call to your sonar cube instance and converts the response to a PDF <br>
+this Python tool performs an API call to your SonarQube instance and generates PDF report from the project specified using project key
 
 ## Installation 
-* create a virtualenv <br>
-  `virtualenv --system-site-packages ./venv` <br>
-* switch to it by sourcing the activate file: <br>
-  `. ./venv/bin/activate`
-* install the dependencies: <br>
+* install Python 3
+* install virtualenv
   ```
-  pip install WeasyPrint
-  pip install requests
-  pip install jinja2
+  pip install virtualenv
+  ```
+* create a virtualenv
+  ```
+  virtualenv ./venv
+  ```
+* switch to it by sourcing the activate file:
+  ```
+  . ./venv/bin/activate` (Linux)
+  venv\Scripts\activate.bat` (Windows)
+* install the dependencies:
+  ```
+  (venv) pip install -r requirements.txt
   ```
 
 ## Execution
-execute in virtualenv (see above) <br> 
-* execution for a project: <br>
-  `python3 sonar_reporter.py myproject` <br>
-* after execution a report named analysis.pdf will be created 
-
-
-## Use Cases 
-
-### create a report with a Jenkins task 
-* first check out the project in your jenkins workspace (/var/lib/jenkins/workspace) <br>
-* create a build task for your project which has been analysed with Sonar Qube <br> 
-  - this build task should be executed after the Sonar Qube analysis 
-  - build task -> invoke shell script: <br> 
+execute in virtualenv (see above)
+* execution for a project:
   ```
-  cd $WORKSPACE
-  cd $WORKSPACE
-  cd ..
-  cd sonar_report_generator
-  virtualenv --system-site-packages ./venv
-  . ./venv/bin/activate
-  pip install WeasyPrint
-  pip install requests
-  pip install jinja2
-
-  python sonar_reporter.py $JOB_BASE_NAME
-  mv report.pdf $WORKSPACE  
+  (venv) python sonar_reporter.py <url> <username> <password> <project_key>
   ```
   
-  - hint: don't forget to set the the location of $PYTHON3_HOME in the jenkins environment settings <br> 
+  Get the project_key from SonarQube by clicking on existing project name and looking for a "Project Key" field at the bottom right part of the screen
+* after execution a report named "sonarqube_report_project_name_date.pdf" will be created 

@@ -5,8 +5,58 @@
     <title>{{ project }}</title>
 </head>
 <body>
-    <h1>Analysis Report</h1>
-    <h2>Project: {{ project }}</h2>
+    <img src="logo.png" alt="sonarqube_logo">
+    <h1>Scan Results</h1>
+    <h3>Report Summary</h3>
+    <table>
+        <tr><td>Project Key</td><td>{{ project }}</td></tr>
+        <tr><td>Project Name</td><td>{{ project_name }}</td></tr>
+        <tr><td>Organization</td><td>{{ project_organization }}</td></tr>
+        <tr><td>Analysis Date</td><td>{{ project_analysis_date }}</td></tr>
+        <tr><td>Generated On</td><td>{{ creation_date }}</td></tr>
+        <tr><td>Version</td><td>{{ project_version }}</td></tr>
+        <tr><td>Server Version</td><td>{{ server_version }}</td></tr>
+        <tr><td>Lines of Code</td><td>{{ ncloc }}</td></tr>
+        <tr><td>Lines of Code Per Language</td><td>{{ ncloc_language_distribution }}</td></tr>
+    </table>
+    <br>
+    <h3>Quality Gates:</h3>
+    {{quality_gates_table}}
+    <br>
+    <h3>Quality Profiles:</h3>
+    {{quality_profiles_table}}
+    <br>
+    <h3>Quality Gate Status: {{ quality_gate_status }}</h3>
+    {{quality_gate_details_table}}
+    <br>
+    <h3>Issue Summary</h3>
+    <table>
+        <tr>
+            <th>Issue Type</th>
+            <th>Value</th>
+        </tr>
+        <tr><td>Vulnerabilities</td><td>{{ vulnerabilities }}</td></tr>
+        <tr><td>Bugs</td><td>{{ bugs }}</td></tr>
+        <tr><td>Code Smells</td><td>{{ code_smells }}</td></tr>
+        <tr><td>Coverage</td><td>{{ coverage }}</td></tr>
+        <tr><td>Duplicated Blocks</td><td>{{ duplicated_blocks }}</td></tr>
+        <tr><td>Duplicated Lines (%)</td><td>{{ duplicated_lines_density }}</td></tr>
+        <tr><td>Technical Debt</td><td>{{ sqale_index }}</td></tr>
+    </table>
+    <br>
+    <h3>Ratings</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+        </tr>
+        <tr><td>Security Rating</td><td>{{ security_rating }}</td></tr>
+        <tr><td>Reliability Rating</td><td>{{ reliability_rating }}</td></tr>
+        <tr><td>Maintainability Rating</td><td>{{ sqale_rating }}</td></tr>
+    </table>
+    <br>
+    {{period_details_table}}
+    <h3>Issue Details</h3>
     <table>
        <tr>
 	 <th>Type</th>
@@ -14,8 +64,6 @@
 	 <th>Start Line</th>
 	 <th>End Line</th>
 	 <th>Message</th>
-	 <th>Author</th>
-	 <th>Effort</th>
        </tr>
        {{ issue_table }}
     </table>    

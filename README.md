@@ -13,7 +13,7 @@ this Python tool performs an API call to your SonarQube instance and generates P
   ```
 * switch to it by sourcing the activate file:
   ```
-  . ./venv/bin/activate` (Linux)
+  . ./venv/bin/activate (Linux)
   venv\Scripts\activate.bat` (Windows)
 * install the dependencies:
   ```
@@ -27,5 +27,5 @@ execute in virtualenv (see above)
   (venv) python sonar_reporter.py <url> <username> <password> <project_key>
   ```
   
-  Get the project_key from SonarQube by clicking on existing project name and looking for a "Project Key" field at the bottom right part of the screen
+  Get the project_key from SonarQube by clicking on existing project name and look for "Project Key" field at the bottom right part of the screen
 * after execution a report named "sonarqube_report_project_name_date.pdf" will be created 
